@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Quote } from '@angular/compiler';
+import { Observable } from 'rxjs';
+import { Quote } from 'src/models/quote';
 
 @Injectable()
 export class QuoteService {
@@ -9,10 +10,8 @@ export class QuoteService {
 
   constructor(public http: HttpClient) {}
 
-  public getQuote(): Promise<Quote> {
-    return this.http.get(this.endpoint + '/randomquote')
-      .toPromise()
-      .then((res: any) => res);
+  public getQuote(): Observable<any> {
+    return this.http.get(this.endpoint + '/randomquote');
   }
 
 }

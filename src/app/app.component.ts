@@ -23,12 +23,9 @@ export class AppComponent {
   }
 
   newQuote(): void {
-    this.quoteService.getQuote()
-      .then((quote: any) => {
-        this.quote = quote;
-      })
-      .catch((error) => {
-        console.log(error);
-    });
+   this.quoteService.getQuote().subscribe(
+     (resp: Quote) => this.quote = resp,
+     (err: Error) => alert(err)
+    );
   }
 }
